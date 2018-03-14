@@ -3,9 +3,16 @@ if exists("g:loaded_optcycle") || &cp
 endif
 let g:loaded_optcycle = 1
 
-nnoremap <silent> <Plug>(optcycle_colorscheme)  :call optcycle#colorscheme()<CR>
-nnoremap <silent> <Plug>(optcycle_number)       :call optcycle#number()<CR>
-nnoremap <silent> <Plug>(optcycle_foldcolumn)   :call optcycle#foldcolumn()<CR>
-nnoremap <silent> <Plug>(optcycle_foldmethod)   :call optcycle#foldmethod()<CR>
-nnoremap <silent> <Plug>(optcycle_colorcolumn)  :call optcycle#colorcolumn()<CR>
-nnoremap <silent> <Plug>(optcycle_laststatus)   :call optcycle#laststatus()<CR>
+command! -nargs=0 -bar  OptcycleColorscheme  call optcycle#colorscheme()
+command! -nargs=0 -bar  OptcycleNumber       call optcycle#number()
+command! -nargs=0 -bar  OptcycleFoldColumn   call optcycle#foldcolumn()
+command! -nargs=0 -bar  OptcycleFoldMethod   call optcycle#foldmethod()
+command! -nargs=0 -bar  OptcycleColorColumn  call optcycle#colorcolumn()
+command! -nargs=0 -bar  OptcycleLastStatus   call optcycle#laststatus()
+
+nnoremap <silent> <Plug>(optcycle_colorscheme)  :OptcycleColorscheme<CR>
+nnoremap <silent> <Plug>(optcycle_number)       :OptcycleNumber<CR>
+nnoremap <silent> <Plug>(optcycle_foldcolumn)   :OptcycleFoldColumn<CR>
+nnoremap <silent> <Plug>(optcycle_foldmethod)   :OptcycleFoldMethod<CR>
+nnoremap <silent> <Plug>(optcycle_colorcolumn)  :OptcycleColorColumn<CR>
+nnoremap <silent> <Plug>(optcycle_laststatus)   :OptcycleLastStatus<CR>
