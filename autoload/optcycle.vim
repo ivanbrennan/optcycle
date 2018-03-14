@@ -1,3 +1,8 @@
+if exists("g:autoloaded_optcycle") || &cp
+  finish
+endif
+let g:autoloaded_optcycle = 1
+
 " Override any of the defaults by defining g:optcycle_config
 "  let g:optcycle_config = {
 "  \   'colorscheme': [
