@@ -31,6 +31,10 @@ let s:defaults = {
 \     { 'colorcolumn':       '', 'long_line':       '' },
 \     { 'colorcolumn': 'tw 100', 'long_line':       '' },
 \     { 'colorcolumn':       '', 'long_line': 'tw 100' }
+\   ],
+\   'laststatus': [
+\     { 'laststatus': 2 },
+\     { 'laststatus': 0 }
 \   ]
 \ }
 
@@ -129,4 +133,8 @@ endf
 
 func! s:highlight_long_lines(spec)
   return matchadd('ColorColumn', a:spec, 128)
+endf
+
+func! optcycle#laststatus()
+  call s:rotate(s:, 'laststatus')
 endf
