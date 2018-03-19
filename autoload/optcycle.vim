@@ -49,41 +49,46 @@ func! s:indices(scope)
   return indices
 endf
 
-func! s:rotate_choices(scope, opt)
+func! s:rotate_choices(scope, opt, n)
   let choices = s:choices(a:opt)
   let indices = s:indices(a:scope)
   let o = get(indices, a:opt, 0)
-  let i = (o + 1) % len(choices)
+  let i = (o + a:n) % len(choices)
   let indices[a:opt] = i
+
   return choices[i]
 endf
 
-func! s:rotate(scope, opt)
-  let choice = s:rotate_choices(a:scope, a:opt)
+func! s:rotate(scope, opt, n)
+  let choice = s:rotate_choices(a:scope, a:opt, a:n)
   for [option, value] in items(choice)
     exec 'let &l:'.option '=' value
   endfor
   exec 'set' a:opt.'?'
 endf
 
+func! s:clicks(args)
+  return get(a:args, 1, 1) " get value of first arg, default to 1
+endf
+
 " -- autoload functions
 
-func! optcycle#colorscheme()
-  let choice = s:rotate_choices(s:, 'colorscheme')
+func! optcycle#colorscheme(...)
+  let choice = s:rotate_choices(s:, 'colorscheme', s:clicks(a:))
   exec 'colorscheme' choice['colorscheme']
   redrawstatus | colorscheme
 endf
 
-func! optcycle#number()
-  call s:rotate(w:, 'number')
+func! optcycle#number(...)
+  call s:rotate(w:, 'number', s:clicks(a:))
 endf
 
-func! optcycle#foldcolumn()
-  call s:rotate(w:, 'foldcolumn')
+func! optcycle#foldcolumn(...)
+  call s:rotate(w:, 'foldcolumn', s:clicks(a:))
 endf
 
-func! optcycle#foldmethod()
-  let choice = s:rotate_choices(w:, 'foldmethod')
+func! optcycle#foldmethod(...)
+  let choice = s:rotate_choices(w:, 'foldmethod', s:clicks(a:))
   let &l:foldmethod = choice['foldmethod']
   call s:update_ruby_fold(choice)
   set foldmethod?
@@ -99,13 +104,13 @@ func! s:update_ruby_fold(choice)
   endif
 endf
 
-func! optcycle#colorcolumn()
+func! optcycle#colorcolumn(...)
   if exists('w:long_line_highlight')
     call matchdelete(w:long_line_highlight)
     unlet w:long_line_highlight
   endif
 
-  let choice = s:rotate_choices(w:, 'colorcolumn')
+  let choice = s:rotate_choices(w:, 'colorcolumn', s:clicks(a:))
   let &colorcolumn = s:colorcolumn_spec(choice['colorcolumn'])
   let long_line_spec = s:long_line_spec(choice['long_line'])
   if long_line_spec != ''
@@ -135,6 +140,6 @@ func! s:highlight_long_lines(spec)
   return matchadd('ColorColumn', a:spec, 128)
 endf
 
-func! optcycle#laststatus()
-  call s:rotate(s:, 'laststatus')
+func! optcycle#laststatus(...)
+  call s:rotate(s:, 'laststatus', s:clicks(a:))
 endf
