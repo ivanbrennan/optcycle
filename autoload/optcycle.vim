@@ -4,13 +4,15 @@ endif
 let g:autoloaded_optcycle = 1
 
 " Override any of the defaults by defining g:optcycle_config
-"  let g:optcycle_config = {
+"  let g:optcycle_config =
+"  \ {
 "  \   'colorscheme': [
 "  \     { 'colorscheme': 'nord' },
 "  \     { 'colorscheme': 'monokai' }
 "  \   ]
 "  \ }
-let s:defaults = {
+let s:defaults =
+\ {
 \   'colorscheme': [
 \     { 'colorscheme': 'default' }
 \   ],
