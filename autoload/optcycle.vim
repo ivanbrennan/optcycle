@@ -37,6 +37,10 @@ let s:defaults =
 \   'laststatus': [
 \     { 'laststatus': 2 },
 \     { 'laststatus': 0 }
+\   ],
+\   'spell': [
+\     { 'spell': 0, 'cursorline': 1 },
+\     { 'spell': 1, 'cursorline': 0 }
 \   ]
 \ }
 
@@ -144,4 +148,8 @@ endf
 
 func! optcycle#laststatus(...) abort
   call s:rotate(s:, 'laststatus', s:clicks(a:))
+endf
+
+func! optcycle#spell(...) abort
+  call s:rotate(s:, 'spell', s:clicks(a:))
 endf

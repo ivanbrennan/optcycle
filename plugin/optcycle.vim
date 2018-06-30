@@ -9,6 +9,7 @@ command! -nargs=? -bar  OFoldColumn   call optcycle#foldcolumn(<f-args>)
 command! -nargs=? -bar  OFoldMethod   call optcycle#foldmethod(<f-args>)
 command! -nargs=? -bar  OColorColumn  call optcycle#colorcolumn(<f-args>)
 command! -nargs=? -bar  OLastStatus   call optcycle#laststatus(<f-args>)
+command! -nargs=? -bar  OSpell        call optcycle#spell(<f-args>)
 
 nnoremap <silent> <Plug>(optcycle_colorscheme+)  :call optcycle#colorscheme(+1)<CR>
 nnoremap <silent> <Plug>(optcycle_colorscheme-)  :call optcycle#colorscheme(-1)<CR>
@@ -27,3 +28,6 @@ nnoremap <silent> <Plug>(optcycle_colorcolumn-)  :call optcycle#colorcolumn(-1)<
 
 nnoremap <silent> <Plug>(optcycle_laststatus+)   :call optcycle#laststatus(+1)<CR>
 nnoremap <silent> <Plug>(optcycle_laststatus-)   :call optcycle#laststatus(-1)<CR>
+
+nnoremap <silent> <Plug>(optcycle_spell+)        :call optcycle#spell(+1)<CR>
+nnoremap <silent> <Plug>(optcycle_spell-)        :call optcycle#spell(-1)<CR>
